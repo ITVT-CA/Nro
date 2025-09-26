@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'nro'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = 'server.ServerManager'
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+        resources {
+            srcDirs = ['src']
+            include '**/*.properties', '**/*.xml', '**/*.yml'
+        }
+    }
+    test {
+        java.srcDirs = ['test']
+    }
+}
+
+dependencies {
+    implementation 'com.zaxxer:HikariCP:5.1.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'mysql:mysql-connector-java:5.1.23'
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'
+    runtimeOnly  'org.slf4j:slf4j-simple:2.0.0-alpha1'
+    compileOnly  'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+    implementation name: 'apache-commons-lang'         
+    implementation name: 'bson-5.1.3'                  
+    implementation name: 'java-json'                   
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': application.mainClass
+        )
+    }
+}
+
+tasks.named('shadowJar') {
+    archiveBaseName.set('NgocRongOnline')
+    archiveClassifier.set('all')
+    archiveVersion.set('')
+    mergeServiceFiles()
+}
+
+tasks.build {
+    dependsOn tasks.shadowJar
+}
