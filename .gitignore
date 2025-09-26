@@ -1,0 +1,42 @@
+# Build outputs
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ / Android Studio / Eclipse / VSCode
+.idea/
+*.iml
+.gradle/
+out/
+bin/
+.classpath
+.project
+.settings/
+.vscode/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Java
+*.class
+
+# Generated JARs, WARs, EARs
+*.jar
+*.war
+*.ear
+
+# Test reports
+/test-output/
+/reports/
+/coverage/
+
+# Ignore local configs
+local.properties
+

@@ -67,7 +67,16 @@ public class LyTieuNuong extends Npc {
                         // nạp!");
                         // }
                         createOtherMenu(player, 3,
-                                "Ta có thể giúp gì cho ngươi?",
+                                "Sự kiện nạp nhận quà:\r\n" + //
+                                                                        "\r\n" + //
+                                                                        "- Khi bạn nạp tích lũy đạt **20.000** VND → nhận ngay **2.000 Ruby**.\r\n" + //
+                                                                        "- Khi bạn nạp tích lũy đạt **50.000** VND → nhận ngay **6.000 Ruby**.\r\n" + //
+                                                                        "- Khi bạn nạp tích lũy đạt **100.000** VND → nhận ngay **15.000 Ruby**.\r\n" + //
+                                                                        "- Khi bạn nạp tích lũy đạt **200.000** VND → nhận ngay **40.000 Ruby**.\r\n" + //
+                                                                        "\r\n" + //
+                                                                        "Mỗi mốc quà chỉ có thể nhận **1 lần duy nhất**.  \r\n" + //
+                                                                        "Khi bạn đã đạt mốc nào, hệ thống sẽ tự động phát quà và ghi nhận lại, tránh nhận trùng lặp.\r\n" + //
+                                                                        "",
                                 "Nhận quà");
 
                     }
