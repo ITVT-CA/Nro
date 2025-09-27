@@ -1,0 +1,36 @@
+services:
+  nro_server:
+    build: .
+    container_name: nro_server
+    restart: unless-stopped
+    ports: ["14445:14445"]
+    user: "1000:1000"
+    environment:
+      - JAVA_OPTS=-server -Dfile.encoding=UTF-8 -Xmx2g -Xms1g
+      - HOME=/app
+      - GRADLE_USER_HOME=/app/.gradle
+    volumes:
+      - ./src:/app/src:ro
+      - ./data:/app/data
+      - ./lib:/app/lib:ro
+      - ./.gradle:/app/.gradle    # để gradle wrapper tải distro/ cache
+      - ./Config.properties:/app/Config.properties:ro
+      - ./maintenanceConfig.txt:/app/maintenanceConfig.txt:ro
+      - ./manifest.mf:/app/manifest.mf:ro
+      - ./build:/app/build
+      - ./logs:/app/logs
+    command: >
+      sh -c "
+        mkdir -p /app/.gradle /app/build &&
+        echo 'Building application...' &&
+        ./gradlew --no-daemon --gradle-user-home /app/.gradle shadowJar &&
+        echo 'Starting NRO Server...' &&
+        java $JAVA_OPTS -jar build/libs/NgocRongOnline-all.jar
+      "
+    networks:
+      - db_game
+
+networks:
+  db_game:
+    driver: bridge
+    external: true

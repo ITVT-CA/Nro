@@ -45,9 +45,9 @@ public class ServerManager {
     public static String timeStart;
 
     public static final Map<Object, Object> CLIENTS = new HashMap<>();
-    public static String NAME_SERVER = "Ngọc Rồng Black Goku"; // Tên Máy Chủ
+    public static String NAME_SERVER = "Ngọc Rồng Base"; // Tên Máy Chủ
     public static String DOMAIN = "https://nroblackgoku.click/"; // Domain Truy Cập
-    public static String NAME = "NRO Black Goku"; // Name Khi Vào Giao Diện Game
+    public static String NAME = "NRO Base"; // Name Khi Vào Giao Diện Game
     public static String IP = "NgocRongOnline"; // IPs - Không Cần Sửa
     public static int PORT = 14445; // Port
     public static int EVENT_SEVER = 0;

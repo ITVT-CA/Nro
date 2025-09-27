@@ -30,7 +30,7 @@ public class LyTieuNuong extends Npc {
             if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                 this.createOtherMenu(player, ConstNpc.BASE_MENU,
                         "|0| Game Ngọc Rồng Chuẩn Teamobi 2025",
-                        "Mở Thành Viên", "Đổi Thỏi Vàng", "Nhận Mốc Nạp", "Cong coin");
+                        "Mở Thành Viên", "Đổi Thỏi Vàng", "Nhận Mốc Nạp");
             }
         }
     }

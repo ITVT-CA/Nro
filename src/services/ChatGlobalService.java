@@ -139,7 +139,7 @@ public class ChatGlobalService implements Runnable {
         public ChatGlobal(Player player, String text) {
             if (!player.isAdmin()) {
                 this.playerName = player.name;
-            } else if (player.name.equals("Ngọc Rồng Black Goku")) {
+            } else if (player.name.equals("Ngọc Rồng Base")) {
                 this.playerName = player.name + " - Founder";
             } else {
                 this.playerName = player.name + " - Quản Trị Viên";

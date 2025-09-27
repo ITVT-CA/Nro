@@ -42,7 +42,7 @@ public class ServerNotify extends Thread {
                     TaiThongBao(notifies.remove(0));
                 }
                 if (Util.canDoWithTime(this.lastTimeGK, 20000)) {
-                    TaiThongBao("Chào mừng bạn đã đến server Ngọc Rồng Black Goku");
+                    TaiThongBao("Chào mừng bạn đã đến với server Ngọc Rồng Base");
                     this.lastTimeGK = System.currentTimeMillis();
                 }
             } catch (Exception ignored) {
