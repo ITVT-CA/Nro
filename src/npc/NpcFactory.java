@@ -2,7 +2,8 @@ package npc;
 
 /*
  * @Author Coder: Nguyễn Tấn Tài
- * @Description: Ngọc Rồng Kiwi - Máy Chủ Chuẩn Teamobi 2025
+ * @Descriimport npc.list.DaiThienSu;
+import npc.list.GokuSSJ2;on: Ngọc Rồng Kiwi - Máy Chủ Chuẩn Teamobi 2025
  * @Group Zalo: https://zalo.me/g/toiyeuvietnam2025
  */
 import npc.list.Whis;
@@ -59,6 +60,7 @@ import npc.list.Osin;
 import npc.list.DauThan;
 import npc.list.OngMoori;
 import npc.list.DaiThienSu;
+// import npc.list.ThoDo;
 import npc.list.GokuSSJ2;
 import services.ConsignShopService;
 import player.Service.ClanService;
@@ -171,6 +173,8 @@ public class NpcFactory {
                     new Babiday(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.LY_TIEU_NUONG ->
                     new LyTieuNuong(mapId, status, cx, cy, tempId, avatar);
+                // case ConstNpc.ThoDo ->
+                //     new ThoDo(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.LINH_CANH ->
                     new LinhCanh(mapId, status, cx, cy, tempId, avatar);
                 case ConstNpc.QUA_TRUNG ->

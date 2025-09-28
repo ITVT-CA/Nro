@@ -152,7 +152,7 @@ public class DataGame {
                     msg.writer().writeByte(skillTemp.type);
                     msg.writer().writeShort(skillTemp.iconId);
                     msg.writer().writeUTF(skillTemp.damInfo);
-                    msg.writer().writeUTF("NgocRongBlackGoku");
+                    msg.writer().writeUTF("NgocRongBase");
                     if (skillTemp.id != 0) {
                         msg.writer().writeByte(skillTemp.skillss.size());
                         for (Skill skill : skillTemp.skillss) {

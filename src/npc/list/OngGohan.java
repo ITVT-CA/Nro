@@ -30,7 +30,7 @@ public class OngGohan extends Npc {
         if (canOpenNpc(player)) {
             if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                 this.createOtherMenu(player, ConstNpc.BASE_MENU,
-                        "|0| BlackGoku - Game Ngọc Rồng Chuẩn Teamobi 2025",
+                        "|0| Base - Game Ngọc Rồng Chuẩn Teamobi 2025",
                         "Giftcode",
                         "Đổi Mật Khẩu",
                         "Nhận ngọc xanh",

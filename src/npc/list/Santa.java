@@ -36,9 +36,9 @@ public class Santa extends Npc {
                     "Mở rộng\nHành trang\nRương đồ",
                     "Nhập mã\nquà tặng",
                     "Cửa hàng\nHạn sử dụng",
-                    "Tiệm\nHớt tóc",
-                    "Danh\nhiệu",
-                    "Shop Vip"
+                    "Tiệm\nHớt tóc"
+                    
+                    
             ));
 
             if (soLuong >= 1) {

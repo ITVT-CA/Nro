@@ -207,7 +207,7 @@ public class Trade {
             } else {
             return false;
             }
-            case 5: //cải trang
+        //    case 5: //cải trang
             case 6: //đậu thần
             case 7: //sách skill
             case 8: //vật phẩm nhiệm vụ
@@ -218,7 +218,7 @@ public class Trade {
             case 24: //ván bay vip
             case 28: //cờ
             case 31: //bánh trung thu, bánh tết
-            case 32: //giáp tập luyện
+          //  case 32: //giáp tập luyện
                 return true;
             default:
                 return false;

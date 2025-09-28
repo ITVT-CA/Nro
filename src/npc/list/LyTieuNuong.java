@@ -74,18 +74,17 @@ public class LyTieuNuong extends Npc {
                                                                         "- Khi bạn nạp tích lũy đạt **100.000** VND → nhận ngay **15.000 Ruby**.\r\n" + //
                                                                         "- Khi bạn nạp tích lũy đạt **200.000** VND → nhận ngay **40.000 Ruby**.\r\n" + //
                                                                         "\r\n" + //
-                                                                        "Mỗi mốc quà chỉ có thể nhận **1 lần duy nhất**.  \r\n" + //
-                                                                        "Khi bạn đã đạt mốc nào, hệ thống sẽ tự động phát quà và ghi nhận lại, tránh nhận trùng lặp.\r\n" + //
-                                                                        "",
+                                                                        "Mỗi mốc quà chỉ có thể nhận **1 lần duy nhất**.  \r\n"                                                                         
+                                                                        ,
                                 "Nhận quà");
 
                     }
-                    case 3 -> {
-                        player.getSession().tongnap += 10000;
-                        Service.gI().sendThongBao(player,
-                                "Bạn vừa nhận được 10k coin");
+                    // case 3 -> {
+                    //     player.getSession().tongnap += 10000;
+                    //     Service.gI().sendThongBao(player,
+                    //             "Bạn vừa nhận được 10k coin");
 
-                    }
+                    // }
                 }
             }
             else if (player.idMark.getIndexMenu() == 3) {

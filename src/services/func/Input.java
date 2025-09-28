@@ -93,7 +93,7 @@ public class Input {
                         break;
                     }
                     if (player.getSession().vnd < cuantity1) {
-                        Service.gI().sendThongBao(player, "Số dư không đủ vui lòng nạp thêm!\n Web: NroBlackgoku.click");
+                        Service.gI().sendThongBao(player, "Số dư không đủ vui lòng nạp thêm!\n Web: NroBase.click");
                     } else {
                         PlayerDAO.subvnd(player, cuantity1);
                         // Tính số lượng item id 457, 1000 VND = 2 item

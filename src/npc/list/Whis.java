@@ -241,7 +241,7 @@ public class Whis extends Npc {
                                             msgg = new Message(-81);
                                             msgg.writer().writeByte(0);
                                             msgg.writer().writeUTF("Skill 9");
-                                            msgg.writer().writeUTF("NgocRongBlackGoku");
+                                            msgg.writer().writeUTF("NgocRongBase");
                                             msgg.writer().writeShort(tempId);
                                             player.sendMessage(msgg);
                                             msgg.cleanup();

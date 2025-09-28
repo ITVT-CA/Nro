@@ -14,12 +14,26 @@ public class RewardManager {
 
     // Parse từ "0b..." sang int
     private static int parseFlags(String s) {
-        if (s == null || s.isEmpty()) return 0;
+        if (s == null || s.isEmpty() || s.equals("null")) return 0;
         s = s.trim();
-        if (s.startsWith("0b") || s.startsWith("0B")) {
-            return Integer.parseInt(s.substring(2), 2);
+        if (s.isEmpty() || s.equals("null")) return 0;
+        
+        try {
+            if (s.startsWith("0b") || s.startsWith("0B")) {
+                String binaryStr = s.substring(2);
+                if (binaryStr.isEmpty()) return 0;
+                return Integer.parseInt(binaryStr, 2);
+            }
+            // Kiểm tra xem string có chỉ chứa 0 và 1 không
+            if (s.matches("[01]+")) {
+                return Integer.parseInt(s, 2);
+            }
+            // Nếu không phải binary format, trả về 0
+            return 0;
+        } catch (NumberFormatException e) {
+            Logger.logException(RewardManager.class, e, "Lỗi parse flags: " + s);
+            return 0;
         }
-        return Integer.parseInt(s, 2);
     }
 
     // Convert từ int sang "0b..."
@@ -43,10 +57,14 @@ public class RewardManager {
         try{ 
             BlackGokuResultSet rs = BlackGokuManager.executeQuery("select reward from account where id = ?", player.session.userId);
             if(rs.first()){
-                player.reward = rs.getString("reward");
+                String rewardStr = rs.getString("reward");
+                player.reward = (rewardStr == null) ? "0b0" : rewardStr;
+            } else {
+                player.reward = "0b0";
             }
         } catch (Exception e) {
             Logger.logException(RewardManager.class, e, "Lỗi load reward from db");
+            player.reward = "0b0";
         }
         Logger.success("abc "+player.reward);
         int flags = parseFlags(player.reward);
