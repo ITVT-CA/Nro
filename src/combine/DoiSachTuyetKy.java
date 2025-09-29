@@ -13,7 +13,7 @@ public class DoiSachTuyetKy {
 
     private static final int REQUIRED_CUON_SACH_CU = 10;
     private static final int REQUIRED_KIM_BAM_GIAY = 1;
-    private static final int SUCCESS_RATE_PERCENT = 20;
+    private static final int SUCCESS_RATE_PERCENT = 100;
     private static final int[] SACH_TUYET_KY_IDS = {1044, 1211, 1212};
 
     public static void showCombine(Player player) {
