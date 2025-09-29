@@ -572,6 +572,10 @@ public class MapService {
                 || mapId == 21 || mapId == 22 || mapId == 23);
     }
 
+    public boolean isMapRoiVang(int mapId) {
+        return mapId >= 68 ;
+    }
+
     public void goToMap(Player player, Zone zoneJoin) {
         Zone oldZone = player.zone;
         if (oldZone != null) {

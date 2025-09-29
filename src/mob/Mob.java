@@ -573,6 +573,14 @@ public class Mob {
                 }
             }
         }
+
+         // Rơi item 399 ở map ID > 68
+         if (mapid >= 68) {
+             if (Util.isTrue(1, 15)) { // Tỷ lệ 1/15 (khoảng 6.7%)
+                 int quantity = Util.nextInt(1, 2);          
+                 list.add(new ItemMap(zone, 399, quantity, x, yEnd, player.id));
+             }
+         }
         if (MapService.gI().isMapNappa(mapid)) {
             if (Util.isTrue(1, 100)) {
                 int vang = Util.nextInt(2000, 6000);
