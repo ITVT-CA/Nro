@@ -232,49 +232,16 @@ public class PVPService {
 
     //**************************************************************************TRẢ THÙ
     public void openSelectRevenge(Player pl, long idEnemy) {
-        Player enemy = Client.gI().getPlayer(idEnemy);
-        if (enemy == null) {
-            Service.gI().hideWaitDialog(pl);
-            Service.gI().sendThongBao(pl, "Đang offline");
-            return;
-        }
-
-        pl.idMark.setIdEnemy(idEnemy);
-        if (!Util.canDoWithTime(pl.idMark.getLastTimeRevenge(), 300000)) {
-            acceptRevenge(pl);
-            return;
-        }
-        NpcService.gI().createMenuConMeo(pl, ConstNpc.REVENGE,
-                -1, "Bạn muốn đến ngay chỗ hắn, phí là 1 ngọc\nvà được tìm thoải mái trong 5 phút nhé", "OK", "Từ chối");
+        // Tính năng trả thù đã bị tắt
+        Service.gI().hideWaitDialog(pl);
+        Service.gI().sendThongBao(pl, "Tính năng trả thù hiện đã bị vô hiệu hóa!");
+        return;
     }
 
     public void acceptRevenge(Player pl) {
-        if (Util.canDoWithTime(pl.idMark.getLastTimeRevenge(), 300000)) {
-            if (pl.inventory.getGem() < 1) {
-                Service.gI().sendThongBao(pl, "Bạn không đủ ngọc, còn thiếu 1 ngọc nữa");
-                return;
-            }
-            pl.idMark.setLastTimeRevenge(System.currentTimeMillis());
-            pl.inventory.subGem(1);
-            Service.gI().sendMoney(pl);
-        }
-        Player enemy = Client.gI().getPlayer(pl.idMark.getIdEnemy());
-        if (enemy == null) {
-            Service.gI().hideWaitDialog(pl);
-            Service.gI().sendThongBao(pl, "Đang offline");
-            return;
-        }
-        if (pl.pvp != null || enemy.pvp != null) {
-            Service.gI().hideWaitDialog(pl);
-            Service.gI().sendThongBao(pl, "Chưa thể đến lúc này, vui lòng thử lại sau ít phút");
-            return;
-        }
-        Zone mapGo = enemy.zone;
-        if ((mapGo = ChangeMapService.gI().checkMapCanJoin(pl, mapGo)) == null || mapGo.isFullPlayer()) {
-            Service.gI().hideWaitDialog(pl);
-            Service.gI().sendThongBao(pl, "Chưa thể đến lúc này, vui lòng thử lại sau ít phút");
-            return;
-        }
-        TraThu traThu = new TraThu(pl, enemy);
+        // Tính năng trả thù đã bị tắt
+        Service.gI().hideWaitDialog(pl);
+        Service.gI().sendThongBao(pl, "Tính năng trả thù hiện đã bị vô hiệu hóa!");
+        return;
     }
 }

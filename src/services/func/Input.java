@@ -49,6 +49,7 @@ public class Input {
     public static final int GET_IT = 508;
     public static final int DANGKY = 509;
     public static final int TRADE_GOLD = 5100;
+    public static final int TRADE_RUBY = 5101;
     public static final int CHOOSE_LEVEL_KGHD = 510;
     public static final int CHOOSE_LEVEL_CDRD = 511;
     public static final int DISSOLUTION_CLAN = 513;
@@ -93,7 +94,7 @@ public class Input {
                         break;
                     }
                     if (player.getSession().vnd < cuantity1) {
-                        Service.gI().sendThongBao(player, "Số dư không đủ vui lòng nạp thêm!\n Web: NroBase.click");
+                        Service.gI().sendThongBao(player, "Số dư không đủ vui lòng nạp thêm!\n Web: NroBase.me");
                     } else {
                         PlayerDAO.subvnd(player, cuantity1);
                         // Tính số lượng item id 457, 1000 VND = 2 item
@@ -105,6 +106,27 @@ public class Input {
                         InventoryService.gI().sendItemBags(player);
 
                         Service.gI().sendThongBao(player, "Đã đổi thành công. Bạn nhận được " + soLuongItem + " Thỏi vàng.");
+                    }
+                    break;
+                case TRADE_RUBY:
+                    int cuantity2 = Integer.valueOf(text[0]);
+                    if (!player.getSession().actived) {
+                        Service.gI().sendThongBao(player, "Vui lòng kích hoạt tài khoản!");
+                        break;
+                    }
+                    if (cuantity2 < 1000 || cuantity2 > 500_000) {
+                        Service.gI().sendThongBao(player, "Tối thiểu 1.000Đ và tối đa 500.000Đ");
+                        break;
+                    }
+                    if (player.getSession().vnd < cuantity2) {
+                        Service.gI().sendThongBao(player, "Số dư không đủ vui lòng nạp thêm!\n Web: NroBase.me");
+                    } else {
+                        PlayerDAO.subvnd(player, cuantity2);
+                        // Tính số lượng ruby, 1000 VND = 100 ruby
+                        int soLuongRuby = (cuantity2 / 1000) * 100;
+                        player.inventory.ruby += soLuongRuby;
+                        Service.gI().sendMoney(player);
+                        Service.gI().sendThongBao(player, "Đã đổi thành công. Bạn nhận được " + soLuongRuby + " Ruby.");
                     }
                     break;
                 case GIVE_IT:
@@ -435,6 +457,10 @@ public class Input {
     }
   public void createFormTradeGold(Player pl) {
         createForm(pl, TRADE_GOLD, "Tỉ lệ quy đổi: 1.000 vnđ = 2 TV \n Số dư hiện tại: " + pl.getSession().vnd, new SubInput("Số lượng", NUMERIC));
+    }
+    
+    public void createFormTradeRuby(Player pl) {
+        createForm(pl, TRADE_RUBY, "Tỉ lệ quy đổi: 1.000 VND = 100 Ruby \n Số dư hiện tại: " + pl.getSession().vnd + " VND", new SubInput("Số VND muốn đổi", NUMERIC));
     } 
     public void createFormChangeName(Player pl, Player plChanged) {
         PLAYER_ID_OBJECT.put((int) pl.id, plChanged);

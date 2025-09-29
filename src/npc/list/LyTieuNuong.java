@@ -43,16 +43,21 @@ public class LyTieuNuong extends Npc {
                     case 0 -> {
                         if (!player.getSession().actived) {
                             if (player.getSession().vnd >= 10000) {
-                                player.getSession().actived = true;
                                 if (PlayerDAO.MuaThanhVien(player, 0)) {
+                                    player.getSession().actived = true;
                                     InventoryService.gI().sendItemBags(player);
                                     Service.gI().sendMoney(player);
+                                    Service.gI().sendThongBao(player, "Chúc mừng! Bạn đã mở thành viên thành công!");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được các đặc quyền thành viên!");
                                 } else {
-                                    this.npcChat(player, "Không đủ tiền để mở thành viên...!");
+                                    Service.gI().sendThongBao(player, " Có lỗi xảy ra khi mở thành viên!");
                                 }
+                            } else {
+                                Service.gI().sendThongBao(player, "Không đủ tiền! Cần ít nhất 10.000 VND để mở thành viên.");
+                                Service.gI().sendThongBao(player, "Số dư hiện tại: " + player.getSession().vnd + " VND");
                             }
                         } else {
-                            this.npcChat(player, "Đã mở thành viên!");
+                            Service.gI().sendThongBao(player, "Bạn đã là thành viên rồi!");
                         }
                     }
                     case 1 -> Input.gI().createFormTradeGold(player);
@@ -69,10 +74,12 @@ public class LyTieuNuong extends Npc {
                         createOtherMenu(player, 3,
                                 "Sự kiện nạp nhận quà:\r\n" + //
                                                                         "\r\n" + //
-                                                                        "- Khi bạn nạp tích lũy đạt **20.000** VND → nhận ngay **2.000 Ruby**.\r\n" + //
-                                                                        "- Khi bạn nạp tích lũy đạt **50.000** VND → nhận ngay **6.000 Ruby**.\r\n" + //
-                                                                        "- Khi bạn nạp tích lũy đạt **100.000** VND → nhận ngay **15.000 Ruby**.\r\n" + //
-                                                                        "- Khi bạn nạp tích lũy đạt **200.000** VND → nhận ngay **40.000 Ruby**.\r\n" + //
+                                                                        "- Khi bạn nạp  **20.000** VND → nhận ngay **20 TV**.\r\n" + //
+                                                                        "- Khi bạn nạp  **50.000** VND → nhận ngay **30 TV**.\r\n" + //
+                                                                        "- Khi bạn nạp  **100.000** VND → nhận ngay **50 TV**.\r\n" + //
+                                                                        "- Khi bạn nạp  **200.000** VND → nhận ngay **110 TV**.\r\n" + //
+                                                                        "- Khi bạn nạp  **550.000** VND → nhận ngay **350 TV + Cải trang đặc biệt (50% TNSM + 30% Sức đánh)**\r\n" + //
+                                                                        "- Khi bạn nạp  **1.000.000** VND → nhận ngay **500 TV + 1 giáp luyện tập cấp 4.**\r\n" + //
                                                                         "\r\n" + //
                                                                         "Mỗi mốc quà chỉ có thể nhận **1 lần duy nhất**.  \r\n"                                                                         
                                                                         ,

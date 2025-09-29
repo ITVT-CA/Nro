@@ -100,11 +100,11 @@ public class RewardService {
                      it.itemOptions.add(new ItemOption(50, Util.nextInt(20, 30)));
                     it.itemOptions.add(new ItemOption(77, Util.nextInt(20, 30)));
                     it.itemOptions.add(new ItemOption(103, Util.nextInt(20, 30)));
-                    it.itemOptions.add(new Item.ItemOption(117, 24));
+                    it.itemOptions.add(new Item.ItemOption(117, Util.nextInt(1, 10))); // Tỷ lệ chí mạng
                     it.itemOptions.add(new Item.ItemOption(154, 0)); // Không bán lại
                     // Xác suất 99% thêm option 93
                     if (!Util.isTrue(1, 100)) {
-                        it.itemOptions.add(new Item.ItemOption(93, Util.nextInt(3, 15))); // HSD
+                        it.itemOptions.add(new Item.ItemOption(93, Util.nextInt(1, 3))); // HSD
                     }
                     it.quantity = 1;
                 } else if (Util.isTrue(1, 100)) {

@@ -46,7 +46,7 @@ public class ServerManager {
 
     public static final Map<Object, Object> CLIENTS = new HashMap<>();
     public static String NAME_SERVER = "Ngọc Rồng Base"; // Tên Máy Chủ
-    public static String DOMAIN = "https://nrobase.click/"; // Domain Truy Cập
+    public static String DOMAIN = "https://nrobase.me/"; // Domain Truy Cập
     public static String NAME = "NRO Base"; // Name Khi Vào Giao Diện Game
     public static String IP = "NgocRongOnline"; // IPs - Không Cần Sửa
     public static int PORT = 14445; // Port
