@@ -1066,6 +1066,27 @@ private static final ScheduledExecutorService scheduler = Executors.newScheduled
         return true;
     }
 
+    // Method để active thành viên miễn phí (khi hoàn thành nhiệm vụ)
+    public static boolean ActiveThanhVienMienPhi(Player player) {
+        PreparedStatement ps = null;
+        try (Connection con = BlackGokuManager.getConnection();) {
+            ps = con.prepareStatement("update account set active = 1 where id = ?");
+            ps.setInt(1, player.getSession().userId);
+            int result = ps.executeUpdate();
+            return result > 0;
+        } catch (Exception e) {
+            Logger.logException(PlayerDAO.class, e, "Lỗi active thành viên miễn phí " + player.name);
+            return false;
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
     public static boolean updateRewardFlags(int playerId, String rewardFlags) {
     try (Connection con = BlackGokuManager.getConnection();
          PreparedStatement ps = con.prepareStatement(

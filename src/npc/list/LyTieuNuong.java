@@ -30,10 +30,44 @@ public class LyTieuNuong extends Npc {
     @Override
     public void openBaseMenu(Player player) {
         if (canOpenNpc(player)) {
+            // Kiểm tra và tự động active nếu đã hoàn thành nhiệm vụ 22
+            checkAndAutoActive(player);
+            
             if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
                 this.createOtherMenu(player, ConstNpc.BASE_MENU,
                         "|0| Game Ngọc Rồng Chuẩn Teamobi 2025",
                         "Mở Thành Viên", "Đổi Thỏi Vàng", "Nhận Mốc Nạp", "Đổi Mảnh Thiệp");
+            }
+        }
+    }
+
+    // Method kiểm tra và tự động active khi hoàn thành nhiệm vụ 22
+    private void checkAndAutoActive(Player player) {
+        if (!player.getSession().actived && player.playerTask != null && player.playerTask.taskMain != null) {
+            // Kiểm tra nếu task hiện tại > 22 (tức là đã hoàn thành task 22)
+            // hoặc đang ở task 22 và đã hoàn thành hết subtask
+            boolean completedTask22 = false;
+            
+            if (player.playerTask.taskMain.id > 22) {
+                // Đã qua task 22, chắc chắn đã hoàn thành
+                completedTask22 = true;
+            } else if (player.playerTask.taskMain.id == 22) {
+                // Đang ở task 22, kiểm tra xem đã hoàn thành hết subtask chưa
+                if (player.playerTask.taskMain.index >= player.playerTask.taskMain.subTasks.size()) {
+                    completedTask22 = true;
+                }
+            }
+            
+            if (completedTask22) {
+                // Cập nhật vào database
+                if (PlayerDAO.ActiveThanhVienMienPhi(player)) {
+                    player.getSession().actived = true;
+                    Service.gI().sendThongBao(player, "🎉 Chúc mừng! Bạn đã được tự động kích hoạt thành viên!");
+                    Service.gI().sendThongBao(player, "✨ Lý do: Hoàn thành nhiệm vụ cấp độ cao!");
+                    Logger.success("Player " + player.name + " auto-activated for completing task 22+");
+                } else {
+                    Logger.error("Failed to auto-activate player " + player.name + " in database");
+                }
             }
         }
     }
@@ -83,7 +117,7 @@ public class LyTieuNuong extends Npc {
                                         "- Khi bạn nạp  **50.000** VND → nhận ngay **30 TV**.\r\n" + //
                                         "- Khi bạn nạp  **100.000** VND → nhận ngay **50 TV**.\r\n" + //
                                         "- Khi bạn nạp  **200.000** VND → nhận ngay **110 TV**.\r\n" + //
-                                        "- Khi bạn nạp  **550.000** VND → nhận ngay **350 TV + Cải trang đặc biệt (50% TNSM + 30% Sức đánh)**\r\n"
+                                        "- Khi bạn nạp  **500.000** VND → nhận ngay **350 TV + Cải trang đặc biệt (50% TNSM + 30% Sức đánh)**\r\n"
                                         + //
                                         "- Khi bạn nạp  **1.000.000** VND → nhận ngay **500 TV + 1 giáp luyện tập cấp 4.**\r\n"
                                         + //

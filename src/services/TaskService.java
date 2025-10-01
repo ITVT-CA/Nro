@@ -8,6 +8,7 @@ package services;
 import consts.ConstMob;
 import consts.ConstNpc;
 import consts.ConstPlayer;
+import database.PlayerDAO;
 import player.Player;
 import consts.ConstTask;
 import boss.Boss;
@@ -125,6 +126,19 @@ public class TaskService {
                 player.playerTask.taskMain = TaskService.gI().getTaskMainById(player, player.playerTask.taskMain.id + 1);
                 break;
         }
+        
+        // Tự động active khi player hoàn thành task 21 và chuyển sang task 22
+        if (!player.getSession().actived && player.playerTask.taskMain.id >= 22) {
+            if (PlayerDAO.ActiveThanhVienMienPhi(player)) {
+                player.getSession().actived = true;
+                Service.gI().sendThongBao(player, "🎉 Chúc mừng! Bạn đã được tự động kích hoạt thành viên!");
+                Service.gI().sendThongBao(player, "✨ Lý do: Hoàn thành nhiệm vụ cấp độ cao (Task " + (player.playerTask.taskMain.id - 1) + " → " + player.playerTask.taskMain.id + ")");
+                Logger.success("Player " + player.name + " auto-activated for reaching task " + player.playerTask.taskMain.id);
+            } else {
+                Logger.error("Failed to auto-activate player " + player.name + " in database");
+            }
+        }
+        
         sendTaskMain(player);
         Service.gI().sendThongBao(player, "Nhiệm vụ tiếp theo của bạn là "
                 + player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).name);

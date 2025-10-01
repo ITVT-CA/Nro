@@ -23,20 +23,16 @@ public class KyGui extends Npc {
     public void confirmMenu(Player pl, int select) {
         if (canOpenNpc(pl)) {
             switch (select) {
-                case 0: // Hướng dẫn thêm
+                case 0 ->
                     NpcService.gI().createTutorial(pl, tempId, avartar,
                             "Cửa hàng chuyên nhận ký gửi mua bán vật phẩm\bChỉ với 5 ngọc\bGiá trị ký gửi 10k-200Tr vàng hoặc 2-2k ngọc\bMột người bán, vạn người mua, mại dô, mại dô");
-                    break;
-                case 1: // Mua bán ký gửi
+                case 1 -> {
                     if (pl.getSession().actived) {
                         ConsignShopService.gI().openShopKyGui(pl);
-                    } else {
-                        this.npcChat(pl, "Bạn chưa kích hoạt thành viên!!!");
+                        return;
                     }
-                    break;
-                case 2: // Từ chối
-                    this.npcChat(pl, "Hẹn gặp lại!");
-                    break;
+                    this.npcChat(pl, "Bạn chưa kích hoạt thành viên!!!");
+                }
             }
         }
     }
