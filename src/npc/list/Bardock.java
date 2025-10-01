@@ -28,7 +28,7 @@ public class Bardock extends Npc {
                     "Quay Cai Trang (Chi so tu 25-50%)\n" +
                     "Quay Pet (Chi so tu 5-20%)\n" +
                     "Quay Van Bay (Chi so tu 5-20%)\n" +
-                    "Quay Thu Deo Lung (Chi so tu 15-35%)\n" +
+                    "Quay Thu Deo Lung (Chi so tu 5-30%)\n" +
                     "===========================================\n" +
                     "Quay Cai Trang", 
                      "Quay Cai Trang","Quay Pet", 
@@ -213,8 +213,8 @@ public class Bardock extends Npc {
             return;
         }
         
-        int[] thuDeoLungIds = {1629, 1630, 1593, 1594, 1595};
-        int[] thuDeoLungIdsVIP = {1596, 1597, 1598, 1599};
+        int[] thuDeoLungIds = {16, 17, 18, 19, 20,467,468,469};
+        int[] thuDeoLungIdsVIP = {741,740,745};
         
         int chance = Util.nextInt(1, 100);
         short selectedThuDeoLungId;
@@ -229,13 +229,13 @@ public class Bardock extends Npc {
         
         if (selectedThuDeoLungId != 16 && selectedThuDeoLungId != 17 && selectedThuDeoLungId != 18 && selectedThuDeoLungId != 19) {
             if (chance <= 12) {
-                thuDeoLung.itemOptions.add(new Item.ItemOption(50, Util.nextInt(25, 35)));
-                thuDeoLung.itemOptions.add(new Item.ItemOption(77, Util.nextInt(25, 35)));
-                thuDeoLung.itemOptions.add(new Item.ItemOption(103, Util.nextInt(25, 35)));
+                thuDeoLung.itemOptions.add(new Item.ItemOption(50, Util.nextInt(25, 30)));
+                thuDeoLung.itemOptions.add(new Item.ItemOption(77, Util.nextInt(25, 30)));
+                thuDeoLung.itemOptions.add(new Item.ItemOption(103, Util.nextInt(25, 30)));
             } else {
-                thuDeoLung.itemOptions.add(new Item.ItemOption(50, Util.nextInt(15, 25)));
-                thuDeoLung.itemOptions.add(new Item.ItemOption(77, Util.nextInt(15, 25)));
-                thuDeoLung.itemOptions.add(new Item.ItemOption(103, Util.nextInt(15, 25)));
+                thuDeoLung.itemOptions.add(new Item.ItemOption(50, Util.nextInt(5, 25)));
+                thuDeoLung.itemOptions.add(new Item.ItemOption(77, Util.nextInt(5, 25)));
+                thuDeoLung.itemOptions.add(new Item.ItemOption(103, Util.nextInt(5, 25)));
             }
         }
         

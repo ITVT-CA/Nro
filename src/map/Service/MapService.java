@@ -572,7 +572,7 @@ public class MapService {
                 || mapId == 21 || mapId == 22 || mapId == 23);
     }
 
-    public boolean isMapRoiVang(int mapId) {
+    public boolean isMapThiep(int mapId) {
         return mapId >= 68 ;
     }
 

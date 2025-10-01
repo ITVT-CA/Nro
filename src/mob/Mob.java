@@ -574,9 +574,9 @@ public class Mob {
             }
         }
 
-         // Rơi item 399 ở map ID > 68
+         // Rơi item 399 ở map ID > 68 , rơi thiệp 399
          if (mapid >= 68) {
-             if (Util.isTrue(1, 10)) { // Tỷ lệ 1/15 (khoảng 6.7%)
+             if (Util.isTrue(1, 30)) { // Tỷ lệ 1/15 (khoảng 6.7%)
                  int quantity = Util.nextInt(1, 1);          
                  list.add(new ItemMap(zone, 399, quantity, x, yEnd, player.id));
              }
@@ -775,12 +775,12 @@ public class Mob {
             list.add(new ItemMap(zone, Util.nextInt(541,542), 1, x, yEnd, player.id));
         }
         if (this.zone.map.mapId >= 0) {
-            if (Util.isTrue(1, 100)) { // nro
+            if (Util.isTrue(1, 300)) { // nro
                 list.add(new ItemMap(zone, Util.nextInt(17, 20), 1, x, this.location.y, player.id));
             }
         }
         if (this.zone.map.mapId >= 0) {
-            if (Util.isTrue(10, 100)) { // spl
+            if (Util.isTrue(5, 100)) { // spl
                 list.add(new ItemMap(Util.spl(zone, Util.nextInt(441, 447), 1, x, this.location.y, player.id)));
             }
         }

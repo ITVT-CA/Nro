@@ -95,20 +95,21 @@ public class LyTieuNuong extends Npc {
                     case 3 -> {
                         if (InventoryService.gI().getCountEmptyBag(player) > 0) {
                             Item thiepItem = InventoryService.gI().findItemBag(player, 399);
-                            Logger.success("Thẻ đổi: " + thiepItem.quantity);
+
                             if (thiepItem != null && thiepItem.quantity >= 2000) {
-                                Logger.success("1");
+
                                 InventoryService.gI().subQuantityItemsBag(player, thiepItem, 2000);
-                                   Logger.success("2");
+
                                 Item goldBar = ItemService.gI().createNewItem((short) 457);
                                 goldBar.quantity = 2;
                                 InventoryService.gI().addItemBag(player, goldBar);
-                                    Logger.success("3");
+
                                 InventoryService.gI().sendItemBags(player);
-                                   Logger.success("4");
+
                                 Service.gI().sendThongBao(player, "Đã sử dụng 2000 mảnh thiệp để đổi lấy 2 thỏi vàng!");
                             } else {
-                                Service.gI().sendThongBao(player, "Bạn cần ít nhất 2000 mảnh thiệp để đổi 2 thỏi vàng!");
+                                Service.gI().sendThongBao(player,
+                                        "Bạn cần ít nhất 2000 mảnh thiệp để đổi 2 thỏi vàng!");
                             }
                         } else {
                             Service.gI().sendThongBao(player, "Hành trang đầy! Vui lòng dọn dẹp hành trang.");
